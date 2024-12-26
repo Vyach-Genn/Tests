@@ -1,17 +1,17 @@
 package cartforonlinestore.controller;
 
 import cartforonlinestore.service.ServiceOnlineStore;
-import cartforonlinestore.shoppingcart.ShoppingCart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collection;
+
+import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/store/order")
 public class ControllerOnlineStore {
 
     private ServiceOnlineStore serviceOnlineStore;
@@ -22,14 +22,14 @@ public class ControllerOnlineStore {
     }
 
     @GetMapping("/add")
-    public ShoppingCart addToCart(@RequestParam("ID") Integer id) {
-        return serviceOnlineStore.addIdToCart(id);
+    public void addToCart(@RequestParam("ID") List<Integer> ids) {
+        serviceOnlineStore.addIdToCart(ids);
 
     }
 
     @GetMapping("/get")
 
-    public Collection<ShoppingCart> getIdFromCart() {
-        return serviceOnlineStore.getIdFromCart();
+    public List<Integer> getIdFromCart() {
+        return serviceOnlineStore.printCartProductsId();
     }
 }

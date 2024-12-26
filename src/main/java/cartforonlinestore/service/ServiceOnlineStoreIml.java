@@ -1,12 +1,14 @@
 package cartforonlinestore.service;
 
-import cartforonlinestore.shoppingcart.ShoppingCart;
+import cartforonlinestore.model.ShoppingCart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
+
 
 public class ServiceOnlineStoreIml implements ServiceOnlineStore {
 
@@ -24,11 +26,8 @@ public class ServiceOnlineStoreIml implements ServiceOnlineStore {
     }
 
     @Override
-    public void getIdFromCart(List<Integer> cartProductsId) {
-        for (ShoppingCart shoppingCart : cartProductsId) {
-            System.out.println(shoppingCart.toString());
-
-        }
+    public List<Integer> printCartProductsId() {
+        return Collections.unmodifiableList(shoppingCart.getCartProductsId());
     }
 
 }
